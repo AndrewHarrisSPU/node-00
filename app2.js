@@ -33,6 +33,7 @@ const server = http.createServer(( request, response ) => {
 
 		'<body>'
 	+		'<div class="container" style="text-align: center">'
+	+		'<h1>App2.js</h1>'
 	+		'<p>Current time is: ' + date + '</p>'
 	);
 
