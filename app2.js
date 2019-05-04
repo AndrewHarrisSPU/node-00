@@ -85,6 +85,7 @@ const server = http.createServer(( request, response ) => {
 		for( var key in record ){
 			response.write( '<td>' + record[ key ] + '</td>' );
 		}
+		response.write( '</tr>' );
 	}
 
 	writeFriendsJSON( friendLists );

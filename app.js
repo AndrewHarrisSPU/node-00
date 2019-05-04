@@ -33,40 +33,45 @@ const server = http.createServer(( request, response ) => {
 
 		'<body>'
 	+		'<div class="container" style="text-align: center">'
+	+		'<h1>App1.js</h1>'
 	+		'<p>Current time is: ' + date + '</p>'
 	);
 
 	// friends!
-	function writeFriends() {
-		for( var key in friends )
-			for( var f in friends[ key ])
-				response.write(
-
-						'<tr>'
-					+	'<td>' + friends[ key ][ f ][ "firstName" ] + '</td>'
-					+	'<td>' + friends[ key ][ f ][ "lastName" ] + '</td>'
-					+	'<td>' + friends[ key ][ f ][ "phone" ] + '</td>'
-					+	'<td>' + friends[ key ][ f ][ "gender" ] + '</td>'
-					+	'</tr>'
-				);
-	}
-
 	response.write(
 	
-			'<table class="table table-bordered table-hover">',
+			'<table class="table table-bordered table-hover">'
 			// head
 		+	'<thead>'
 		+		'<tr>'
 		+			'<th scope="col">First Name</th>'
 		+			'<th scope="col">Last Name</th>'
 		+			'<th scope="col">Phone</th>'
+		+			'<th scope="col">Gender</th>'
 		+		'</tr>'
 		+	'</thead>'
 			//body
 		+	'<tbody>'
 	);
 
-	writeFriends();
+	function writeFriendRecord( record ){
+		response.write( '<tr>' );
+
+		for( var key in record ){
+			response.write( '<td>' + record[ key ] + '</td>' );
+		}
+		response.write( '</tr>' );
+	}
+
+
+	function writeFriendList() {
+		for( el in friends ){
+			for( record in friends[ el ])
+				writeFriendRecord( friends[ el ][ record ]);
+		}
+	}
+
+	writeFriendList();
 
 	response.write(
 		+	'</tbody>'
